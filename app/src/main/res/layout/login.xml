@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesión"
+        android:textSize="25sp"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:id="@+id/textinicio"/>
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/textinicio"
+        android:id="@+id/edtusuario"
+        android:hint="Ususario"/>
+
+    <android.support.v7.widget.AppCompatEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/edtusuario"
+        android:hint="contraseña"
+        android:id="@+id/edtcontrasena"/>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btninicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesión"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/edtcontrasena"/>
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btninicio"
+        android:text="¿No está registrado?, pulse aquí para registrarse"
+        android:gravity="center_horizontal"
+        android:id="@+id/textinicioregistro"/>
+
+</RelativeLayout>
