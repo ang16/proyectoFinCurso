@@ -14,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         onBackPressed();
-       pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
+       //pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp
         registro=findViewById(R.id.textinicioregistro);
 
         registro.setOnClickListener(new View.OnClickListener() {
