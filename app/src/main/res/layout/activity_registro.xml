@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btninicioregistro"
         android:text="¿No está registrado?, pulse aquí para registrarse"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:id="@+id/textregistroinicio"/>
 
 </RelativeLayout>
