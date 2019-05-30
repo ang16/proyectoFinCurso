@@ -5,15 +5,17 @@
     android:layout_height="match_parent">
 
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Registro">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrarse"
         android:textSize="25sp"
@@ -25,14 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/textregistro"
         android:id="@+id/edtusuarioregistro"
         android:hint="Ususario"/>
     <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/edtusuarioregistro"
         android:id="@+id/edtemailregistro"
         android:hint="Email"/>
 
@@ -40,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/edtemailregistro"
         android:hint="contraseña"
         android:id="@+id/edtcontrasenaregistro"/>
     <android.support.v7.widget.AppCompatButton
@@ -48,15 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrarse"
-        android:layout_marginTop="50dp"
-        android:layout_below="@id/edtcontrasenaregistro"/>
+        android:layout_marginTop="50dp"/>
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btninicioregistro"
         android:text="¿No está registrado?, pulse aquí para registrarse"
         android:gravity="center_horizontal"
         android:id="@+id/textregistroinicio"/>
 
-</RelativeLayout>
+
+</LinearLayout>
 </ScrollView>

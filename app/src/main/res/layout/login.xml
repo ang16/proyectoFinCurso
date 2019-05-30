@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar sesión"
         android:textSize="25sp"
@@ -19,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@id/textinicio"
         android:id="@+id/edtusuario"
         android:hint="Ususario"/>
 
@@ -27,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_below="@+id/edtusuario"
         android:hint="contraseña"
         android:id="@+id/edtcontrasena"/>
     <android.support.v7.widget.AppCompatButton
@@ -35,14 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar sesión"
-        android:layout_marginTop="50dp"
-        android:layout_below="@id/edtcontrasena"/>
+        android:layout_marginTop="50dp"/>
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btninicio"
         android:text="¿No está registrado?, pulse aquí para registrarse"
         android:gravity="center_horizontal"
         android:id="@+id/textinicioregistro"/>
 
-</RelativeLayout>
+</LinearLayout>
