@@ -9,24 +9,21 @@ import android.widget.TextView;
 public class LoginActivity extends AppCompatActivity {
 
     TextView registro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        onBackPressed();
 
-        registro=findViewById(R.id.textinicioregistro);
+        registro = findViewById(R.id.textinicioregistro);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(LoginActivity.this, Registro.class);
+                Intent intent = new Intent(LoginActivity.this, Registro.class);
                 startActivity(intent);
             }
         });
     }
-    @Override
-    public void onBackPressed(){
-        moveTaskToBack(false);
-    }
 }
+
