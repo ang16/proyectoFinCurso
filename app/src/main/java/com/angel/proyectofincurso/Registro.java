@@ -5,18 +5,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 public class Registro extends AppCompatActivity {
 
     TextView registro;
+    EditText usuario;
+    EditText contrasena;
+    EditText  email;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
         registro = findViewById(R.id.textregistroinicio);
+        usuario=findViewById(R.id.edtcontrasenaregistro);
+        email=findViewById(R.id.edtemailregistro);
+        contrasena=findViewById(R.id.edtcontrasenaregistro);
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,32 +41,21 @@ public class Registro extends AppCompatActivity {
             }
         });
 
+        insertaUsuario();
+
 
     }
 
     public void insertaUsuario() {
-        //Abrimos la base de datos 'DBUsuarios' en modo escritura
-        UsuarioDbHelper usdbh =
-                new UsuarioDbHelper(this, "ProyectoFinCurso", 1);
-
-        SQLiteDatabase db = usdbh.getWritableDatabase();
-
-        //Si hemos abierto correctamente la base de datos
-        if (db != null) {
-            //Insertamos 5 usuarios de ejemplo
-            for (int i = 1; i <= 5; i++) {
-                //Generamos los datos
-                int codigo = i;
-                String nombre = "Usuario" + i;
-
-                //Insertamos los datos en la tabla Usuarios
-                db.execSQL("INSERT INTO Usuarios (codigo, nombre) " +
-                        "VALUES (" + codigo + ", '" + nombre + "')");
-            }
-
-            //Cerramos la base de datos
-            db.close();
-
-        }
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        Usuario usuario = new Usuario();
+        usuario.setUsuario("aaa");
+        usuario.setEmail("aaa");
+        usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5("aaa"))));
+        usuario.setAvatar("aaa");
+        Usuario user = realm.copyToRealm(usuario);
+        realm.commitTransaction();
     }
 }
+
