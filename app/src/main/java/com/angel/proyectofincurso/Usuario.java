@@ -1,5 +1,7 @@
 package com.angel.proyectofincurso;
 
+import android.net.Uri;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -9,7 +11,7 @@ public class Usuario extends RealmObject {
     private String usuario;
     private  String email;
     private String contrasena;
-    private String avatar;
+    private Uri avatar;
 
     public long getId() {
         return id;
@@ -43,11 +45,11 @@ public class Usuario extends RealmObject {
         this.contrasena = contrasena;
     }
 
-    public String getAvatar() {
+    public Uri getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(Uri avatar) {
         this.avatar = avatar;
     }
 }

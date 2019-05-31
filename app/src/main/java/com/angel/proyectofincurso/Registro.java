@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class Registro extends AppCompatActivity {
     EditText contrasena;
     EditText email;
     Button btnseleccionimagen;
+    ImageView ivAvatar;
 
     @Override
 
@@ -43,6 +45,7 @@ public class Registro extends AppCompatActivity {
         email=findViewById(R.id.edtemailregistro);
         contrasena=findViewById(R.id.edtcontrasenaregistro);
         btnseleccionimagen=findViewById(R.id.btnseleccionimagen);
+        ivAvatar=findViewById(R.id.ivAvatar);
 
         btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,14 +74,14 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email) {
+    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email, ImageView ivAvatar) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         Usuario usuario = new Usuario();
         usuario.setUsuario(String.valueOf(nombreUsuario.getText()));
         usuario.setEmail(String.valueOf(email.getText()));
         usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
-        usuario.setAvatar(String.valueOf(nombreUsuario.getText()));
+        usuario.setAvatar(ivAvatar.uri);
         realm.copyToRealm(usuario);
         realm.commitTransaction();
     }
@@ -90,7 +93,8 @@ public class Registro extends AppCompatActivity {
                 if (data != null) {
                     //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     Uri selectedImage = data.getData();
-                    registro.setText(selectedImage.toString());
+                    //registro.setText(selectedImage.toString());
+                    ivAvatar.setImageURI(selectedImage);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
                 Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();

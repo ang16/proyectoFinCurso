@@ -1,65 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Registro">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Registro">
 
-    <TextView
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:textSize="25sp"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:id="@+id/textregistro"/>
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/edtusuarioregistro"
-        android:hint="Ususario"/>
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/edtemailregistro"
-        android:hint="Email"/>
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:hint="contraseña"
-        android:id="@+id/edtcontrasenaregistro"/>
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnseleccionimagen"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Selecionar imagen"
-        android:layout_marginTop="20dp"/>
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btninicioregistro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:layout_marginTop="50dp"/>
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="¿No está registrado?, pulse aquí para registrarse"
-        android:gravity="center_horizontal"
-        android:id="@+id/textregistroinicio"/>
+        <TextView
+            android:id="@+id/textregistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:gravity="center_horizontal"
+            android:text="Registrarse"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:background="@color/cardview_light_background"
+                android:id="@+id/ivAvatar"/>
+        </RelativeLayout>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnseleccionimagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecionar imagen de perfil" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtusuarioregistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Ususario" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtemailregistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Email" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtcontrasenaregistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="contraseña" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btninicioregistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Registrarse" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/textregistroinicio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="¿No está registrado?, pulse aquí para registrarse" />
 
 
-</LinearLayout>
+    </LinearLayout>
 </ScrollView>
