@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
 
         }else{
+            Intent intent = new Intent(LoginActivity.this, BuscaPelicula.class);
+            startActivity(intent);
 
         }
     }
