@@ -11,7 +11,7 @@ public class Usuario extends RealmObject {
     private String usuario;
     private  String email;
     private String contrasena;
-    private Uri avatar;
+    private String avatar;
 
     public long getId() {
         return id;
@@ -45,11 +45,11 @@ public class Usuario extends RealmObject {
         this.contrasena = contrasena;
     }
 
-    public Uri getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Uri avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 }

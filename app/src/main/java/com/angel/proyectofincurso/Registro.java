@@ -33,6 +33,7 @@ public class Registro extends AppCompatActivity {
     EditText email;
     Button btnseleccionimagen;
     ImageView ivAvatar;
+    String imagepath;
 
     @Override
 
@@ -81,7 +82,7 @@ public class Registro extends AppCompatActivity {
         usuario.setUsuario(String.valueOf(nombreUsuario.getText()));
         usuario.setEmail(String.valueOf(email.getText()));
         usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
-        usuario.setAvatar(ivAvatar.uri);
+        usuario.setAvatar(imagepath);
         realm.copyToRealm(usuario);
         realm.commitTransaction();
     }
@@ -93,7 +94,7 @@ public class Registro extends AppCompatActivity {
                 if (data != null) {
                     //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     Uri selectedImage = data.getData();
-                    //registro.setText(selectedImage.toString());
+                    imagepath=selectedImage.toString();
                     ivAvatar.setImageURI(selectedImage);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
