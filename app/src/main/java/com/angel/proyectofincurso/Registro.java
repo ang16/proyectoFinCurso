@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,12 +94,15 @@ public class Registro extends AppCompatActivity {
 
     public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email, String ivAvatar) {
         Realm realm = Realm.getDefaultInstance();
+        Log.i("Realm", realm.getPath());
+        final RealmResults<Usuario> puppies = realm.where(Usuario.class).findAll();
         realm.beginTransaction();
         Usuario usuario = new Usuario();
         usuario.setUsuario(String.valueOf(nombreUsuario.getText()));
         usuario.setEmail(String.valueOf(email.getText()));
         usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
         usuario.setAvatar(ivAvatar);
+        usuario.setId(puppies.size());
         realm.copyToRealm(usuario);
         realm.commitTransaction();
     }
