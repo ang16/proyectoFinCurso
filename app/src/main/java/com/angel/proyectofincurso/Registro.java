@@ -34,6 +34,7 @@ public class Registro extends AppCompatActivity {
     Button btnseleccionimagen;
     ImageView ivAvatar;
     String imagepath;
+    Button btninicioregistro;
 
     @Override
 
@@ -47,6 +48,7 @@ public class Registro extends AppCompatActivity {
         contrasena=findViewById(R.id.edtcontrasenaregistro);
         btnseleccionimagen=findViewById(R.id.btnseleccionimagen);
         ivAvatar=findViewById(R.id.ivAvatar);
+        btninicioregistro=findViewById(R.id.btninicioregistro);
 
         btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +58,21 @@ public class Registro extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
 
 
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"),SELECT_IMAGE);
+                startActivityForResult(Intent.createChooser(intent, "Selecciona una imagen"),SELECT_IMAGE);
+            }
+        });
+
+        btninicioregistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    insertaUsuario(usuario,contrasena,email,imagepath);
+                    Toast.makeText(Registro.this, "Uusario creado", Toast.LENGTH_LONG).show();
+
+                }catch (Exception e){
+
+                }
+
             }
         });
 
@@ -68,21 +84,21 @@ public class Registro extends AppCompatActivity {
             }
         });
 
-        //insertaUsuario();
+
 
 
 
 
     }
 
-    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email, ImageView ivAvatar) {
+    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email, String ivAvatar) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         Usuario usuario = new Usuario();
         usuario.setUsuario(String.valueOf(nombreUsuario.getText()));
         usuario.setEmail(String.valueOf(email.getText()));
         usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
-        usuario.setAvatar(imagepath);
+        usuario.setAvatar(ivAvatar);
         realm.copyToRealm(usuario);
         realm.commitTransaction();
     }
@@ -92,13 +108,12 @@ public class Registro extends AppCompatActivity {
         if (requestCode == SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
-                    //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     Uri selectedImage = data.getData();
                     imagepath=selectedImage.toString();
                     ivAvatar.setImageURI(selectedImage);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED)  {
-                Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
             }
         }
     }
