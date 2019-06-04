@@ -10,6 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.digest.DigestUtils;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -54,7 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         final RealmResults<Usuario> usuarios = realm.where(Usuario.class).equalTo("usuario",String.valueOf(edtusuario.getText())).findAll();
-        final RealmResults<Usuario> contrasenas = realm.where(Usuario.class).equalTo("contrasena",String.valueOf(edtusuario.getText())).findAll();
+        String s= new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(edtcontrasena.getText()))));
+        final RealmResults<Usuario> contrasenas = realm.where(Usuario.class).equalTo("contrasena", new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(edtcontrasena.getText()))))).findAll();
         realm.commitTransaction();
         if(usuarios.size()==0){
             Toast.makeText(this, "Usuario incorrecto", Toast.LENGTH_LONG).show();

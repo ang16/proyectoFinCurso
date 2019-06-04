@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         final Handler handler = new Handler();
 
-        Realm.init(getApplicationContext());
+
         handler.postDelayed(new Runnable() {
 
             @Override

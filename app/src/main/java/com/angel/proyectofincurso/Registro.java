@@ -44,12 +44,12 @@ public class Registro extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
 
         registro = findViewById(R.id.textregistroinicio);
-        usuario=findViewById(R.id.edtcontrasenaregistro);
-        email=findViewById(R.id.edtemailregistro);
-        contrasena=findViewById(R.id.edtcontrasenaregistro);
-        btnseleccionimagen=findViewById(R.id.btnseleccionimagen);
-        ivAvatar=findViewById(R.id.ivAvatar);
-        btninicioregistro=findViewById(R.id.btninicioregistro);
+        usuario = findViewById(R.id.edtcontrasenaregistro);
+        email = findViewById(R.id.edtemailregistro);
+        contrasena = findViewById(R.id.edtcontrasenaregistro);
+        btnseleccionimagen = findViewById(R.id.btnseleccionimagen);
+        ivAvatar = findViewById(R.id.ivAvatar);
+        btninicioregistro = findViewById(R.id.btninicioregistro);
 
         btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,20 +59,16 @@ public class Registro extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
 
 
-                startActivityForResult(Intent.createChooser(intent, "Selecciona una imagen"),SELECT_IMAGE);
+                startActivityForResult(Intent.createChooser(intent, "Selecciona una imagen"), SELECT_IMAGE);
             }
         });
 
         btninicioregistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    insertaUsuario(usuario,contrasena,email,imagepath);
-                    Toast.makeText(Registro.this, "Uusario creado", Toast.LENGTH_LONG).show();
 
-                }catch (Exception e){
+                insertaUsuario(usuario, contrasena, email, imagepath);
 
-                }
 
             }
         });
@@ -86,25 +82,31 @@ public class Registro extends AppCompatActivity {
         });
 
 
-
-
-
-
     }
 
-    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText email, String ivAvatar) {
+    public void insertaUsuario(EditText nombreUsuario, EditText contrasena, EditText email, String ivAvatar) {
         Realm realm = Realm.getDefaultInstance();
-        Log.i("Realm", realm.getPath());
-        final RealmResults<Usuario> puppies = realm.where(Usuario.class).findAll();
         realm.beginTransaction();
-        Usuario usuario = new Usuario();
-        usuario.setUsuario(String.valueOf(nombreUsuario.getText()));
-        usuario.setEmail(String.valueOf(email.getText()));
-        usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
-        usuario.setAvatar(ivAvatar);
-        usuario.setId(puppies.size());
-        realm.copyToRealm(usuario);
-        realm.commitTransaction();
+        final RealmResults<Usuario> usuarios = realm.where(Usuario.class).equalTo("usuario", String.valueOf(nombreUsuario.getText())).findAll();
+        if (usuarios.size() == 0) {
+            final long puppies = (long) realm.where(Usuario.class).max("id");
+            final RealmResults<Usuario> puppies2 = realm.where(Usuario.class).findAll();
+            Usuario usuario = new Usuario();
+            usuario.setUsuario(nombreUsuario.getText().toString());
+            usuario.setEmail(String.valueOf(email.getText()));
+            usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
+            usuario.setAvatar(ivAvatar);
+            usuario.setId(puppies+1);
+            realm.copyToRealm(usuario);
+            realm.commitTransaction();
+            Toast.makeText(Registro.this, "Uusario creado", Toast.LENGTH_LONG).show();
+        } else {
+
+            Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_LONG).show();
+            usuarios.deleteFromRealm(0);
+            realm.commitTransaction();
+        }
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -113,10 +115,10 @@ public class Registro extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     Uri selectedImage = data.getData();
-                    imagepath=selectedImage.toString();
+                    imagepath = selectedImage.toString();
                     ivAvatar.setImageURI(selectedImage);
                 }
-            } else if (resultCode == Activity.RESULT_CANCELED)  {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
             }
         }
