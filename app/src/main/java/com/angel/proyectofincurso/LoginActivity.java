@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        getSupportActionBar().setTitle(R.string.loging_tittle);
         registro = findViewById(R.id.textinicioregistro);
         textinicio= findViewById(R.id.textinicio);
         edtusuario= findViewById(R.id.edtusuario);

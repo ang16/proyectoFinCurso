@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BuscaPelicula"></activity>
+        <activity android:name=".PeliculaActivity"></activity>
+        <activity android:name=".BuscaPelicula" />
         <activity android:name=".Registro" />
         <activity android:name=".SplashActivity">
             <intent-filter>

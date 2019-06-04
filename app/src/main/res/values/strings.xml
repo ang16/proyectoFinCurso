@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Proyecto fin curso</string>
+    <string name="app_name">infopelis</string>
     <string name="title_activity_registro">Registro</string>
+    <string name="loging_tittle">Login</string>
 </resources>
