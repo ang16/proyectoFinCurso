@@ -31,6 +31,7 @@ public class Registro extends AppCompatActivity {
     TextView registro;
     EditText usuario;
     EditText contrasena;
+    EditText contrasena2;
     EditText email;
     Button btnseleccionimagen;
     ImageView ivAvatar;
@@ -47,6 +48,7 @@ public class Registro extends AppCompatActivity {
         usuario = findViewById(R.id.edtcontrasenaregistro);
         email = findViewById(R.id.edtemailregistro);
         contrasena = findViewById(R.id.edtcontrasenaregistro);
+        contrasena2 = findViewById(R.id.edtcontrasenaregistro2);
         btnseleccionimagen = findViewById(R.id.btnseleccionimagen);
         ivAvatar = findViewById(R.id.ivAvatar);
         btninicioregistro = findViewById(R.id.btninicioregistro);
@@ -67,7 +69,7 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                insertaUsuario(usuario, contrasena, email, imagepath);
+                insertaUsuario(usuario, contrasena,contrasena2, email, imagepath);
 
 
             }
@@ -84,11 +86,15 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    public void insertaUsuario(EditText nombreUsuario, EditText contrasena, EditText email, String ivAvatar) {
+    public void insertaUsuario(EditText nombreUsuario, EditText contrasena,EditText contrasena2, EditText email, String ivAvatar) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         final RealmResults<Usuario> usuarios = realm.where(Usuario.class).equalTo("usuario", String.valueOf(nombreUsuario.getText())).findAll();
+        final RealmResults<Usuario> usuarios2 = realm.where(Usuario.class).findAll();
         if (usuarios.size() == 0) {
+            if(!contrasena.getText().toString().equals(contrasena2.getText().toString())){
+                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show();
+            }else{
             Number puppies = realm.where(Usuario.class).max("id");
             long longId;
             final RealmResults<Usuario> puppies2 = realm.where(Usuario.class).findAll();
@@ -97,15 +103,17 @@ public class Registro extends AppCompatActivity {
             usuario.setEmail(String.valueOf(email.getText()));
             usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
             usuario.setAvatar(ivAvatar);
-            if(puppies==null){
-                longId= 1;
-            }else{
-                longId=puppies.longValue()+1;
-            }
+                if(puppies==null){
+                    longId= 1;
+                }else{
+                    longId=puppies.longValue()+1;
+                }
+
             usuario.setId(longId);
             realm.copyToRealm(usuario);
             realm.commitTransaction();
             Toast.makeText(Registro.this, "Uusario creado", Toast.LENGTH_LONG).show();
+            }
         } else {
 
             Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_LONG).show();

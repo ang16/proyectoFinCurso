@@ -63,6 +63,13 @@
             android:layout_marginTop="50dp"
             android:hint="contraseña" />
 
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtcontrasenaregistro2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Verifica tu contraseña" />
+
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btninicioregistro"
             android:layout_width="match_parent"
