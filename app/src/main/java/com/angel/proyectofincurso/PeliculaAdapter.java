@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.BookViewHolder>{
+public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>{
     Context context;
     ArrayList<Pelicula> books;
     int resource;
@@ -39,17 +39,17 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.BookVi
 
     @NonNull
     @Override
-    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public PeliculaViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //Esta línea siempre es igual
         View itemView = LayoutInflater.from(context).inflate(resource, viewGroup, false);
 
-        BookViewHolder bookViewHolder = new BookViewHolder(itemView);
+        PeliculaViewHolder bookViewHolder = new PeliculaViewHolder(itemView);
 
         return bookViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int i) {
+    public void onBindViewHolder(@NonNull PeliculaViewHolder bookViewHolder, int i) {
         //Saco el libro de la lista que está en la posición "i"
         Pelicula book = books.get(i);
         //lo uso para rellenar el viewholder
@@ -71,22 +71,22 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.BookVi
 
 
     public Pelicula getItemFromView(View view) {
-        BookViewHolder viewHolder = (BookViewHolder) view.getTag();
+        PeliculaViewHolder viewHolder = (PeliculaViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
         return books.get(position);
     }
 
     public int getPositionFromView(View view) {
-        BookViewHolder viewHolder = (BookViewHolder) view.getTag();
+        PeliculaViewHolder viewHolder = (PeliculaViewHolder) view.getTag();
         return viewHolder.getAdapterPosition();
     }
 
 
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class PeliculaViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombrePelicula;
         ImageView ivPelicula;
 
-        public BookViewHolder(@NonNull View itemView) {
+        public PeliculaViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvNombrePelicula = itemView.findViewById(R.id.tvNombrePelicula);

@@ -89,14 +89,20 @@ public class Registro extends AppCompatActivity {
         realm.beginTransaction();
         final RealmResults<Usuario> usuarios = realm.where(Usuario.class).equalTo("usuario", String.valueOf(nombreUsuario.getText())).findAll();
         if (usuarios.size() == 0) {
-            final long puppies = (long) realm.where(Usuario.class).max("id");
+            Number puppies = realm.where(Usuario.class).max("id");
+            long longId;
             final RealmResults<Usuario> puppies2 = realm.where(Usuario.class).findAll();
             Usuario usuario = new Usuario();
             usuario.setUsuario(nombreUsuario.getText().toString());
             usuario.setEmail(String.valueOf(email.getText()));
             usuario.setContrasena(new String(Hex.encodeHex(DigestUtils.md5(String.valueOf(contrasena.getText())))));
             usuario.setAvatar(ivAvatar);
-            usuario.setId(puppies+1);
+            if(puppies==null){
+                longId= 1;
+            }else{
+                longId=puppies.longValue()+1;
+            }
+            usuario.setId(longId);
             realm.copyToRealm(usuario);
             realm.commitTransaction();
             Toast.makeText(Registro.this, "Uusario creado", Toast.LENGTH_LONG).show();

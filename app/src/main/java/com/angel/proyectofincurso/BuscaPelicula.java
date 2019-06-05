@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -22,9 +23,16 @@ public class BuscaPelicula extends AppCompatActivity {
 
         PeliculaAdapter peliculaAdapter= new PeliculaAdapter(this,peliculas,R.layout.item_pelicula);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(peliculaAdapter);
+
+        peliculaAdapter.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 }
