@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="20dp"
+
+
    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="1dp"
        >
     <ImageView
         android:layout_width="match_parent"
@@ -19,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:id="@+id/tvNombrePelicula"/>
+        android:id="@+id/tvNombrePelicula"
+        android:background="#61272626"/>
     </RelativeLayout>
 
 

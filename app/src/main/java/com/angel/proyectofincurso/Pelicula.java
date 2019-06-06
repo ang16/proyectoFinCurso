@@ -1,31 +1,40 @@
 package com.angel.proyectofincurso;
 
 public class Pelicula {
-    String tittulo;
-    String portada;
-    String descripcion;
+    Long id;
+    String title;
+    String poster_path;
+    String overview;
 
-    public String getTittulo() {
-        return tittulo;
+    public Long getId() {
+        return id;
     }
 
-    public void setTittulo(String tittulo) {
-        this.tittulo = tittulo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getPortada() {
-        return portada;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPortada(String portada) {
-        this.portada = portada;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getPoster_path() {
+        return poster_path;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setPoster_path(String poster_path) {
+        this.poster_path = poster_path;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 }

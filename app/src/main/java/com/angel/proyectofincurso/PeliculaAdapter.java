@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -95,8 +96,8 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.Pelicu
         }
 
         public void bindBook(Pelicula book) {
-            tvNombrePelicula.setText(book.getTittulo());
-            Glide.with(context).load(book.getPortada()).into(ivPelicula);
+            tvNombrePelicula.setText(book.getTitle());
+            Glide.with(context).load(RestClient.imageBaseUrl+book.getPoster_path()).into(ivPelicula);
 
         }
     }
