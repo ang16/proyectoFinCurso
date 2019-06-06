@@ -57,8 +57,8 @@ public class BuscaPelicula extends AppCompatActivity {
             @Override
             public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
                 ListaPeliculasDTO listaPeliculasDTO = response.body();
-                ArrayList<Pelicula> results = listaPeliculasDTO.getResults();
-                PeliculaAdapter peliculaAdapter = new PeliculaAdapter(BuscaPelicula.this, results, R.layout.item_pelicula);
+                final ArrayList<Pelicula> results = listaPeliculasDTO.getResults();
+                final PeliculaAdapter peliculaAdapter = new PeliculaAdapter(BuscaPelicula.this, results, R.layout.item_pelicula);
                 GridLayoutManager layoutManager = new GridLayoutManager(BuscaPelicula.this, 2);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(peliculaAdapter);
@@ -67,6 +67,7 @@ public class BuscaPelicula extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent intent= new Intent(BuscaPelicula.this, PeliculaActivity.class);
+                        intent.putExtra("id",peliculaAdapter.getItemFromView(view).getId());
                         startActivity(intent);
                     }
                 });

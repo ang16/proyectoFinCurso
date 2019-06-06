@@ -28,6 +28,12 @@ public class RestClient {
 
     PeliculasServices movieServices;
 
+    public ActorService getActorServices() {
+        return actorService;
+    }
+
+    ActorService actorService;
+
     /**
      * Url base de los servicios de la API
      */
@@ -60,6 +66,8 @@ public class RestClient {
     private void initServices(Retrofit restAdapter) {
 
         movieServices = restAdapter.create(PeliculasServices.class);
+        actorService = restAdapter.create(ActorService.class);
+
     }
 
 }
