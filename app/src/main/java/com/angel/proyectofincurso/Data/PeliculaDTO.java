@@ -1,6 +1,6 @@
-package com.angel.proyectofincurso;
+package com.angel.proyectofincurso.Data;
 
-public class Pelicula {
+public class PeliculaDTO {
     Long id;
     String title;
     String poster_path;

@@ -1,17 +1,15 @@
 package com.angel.proyectofincurso;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.angel.proyectofincurso.Data.ActorDTO;
 import com.angel.proyectofincurso.Data.ListaActoresDTO;
-import com.angel.proyectofincurso.Data.ListaPeliculasDTO;
+import com.angel.proyectofincurso.Data.PeliculaDTO;
 import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
 
@@ -47,18 +45,18 @@ public class PeliculaActivity extends AppCompatActivity {
 
     public void buscaPeliculas(Long query) {
 
-        Call<Pelicula> call = restClient.getPeliculasServices().getPelicula(query, RestClient.apiKey, RestClient.language, 1);
-        call.enqueue(new Callback<Pelicula>() {
+        Call<PeliculaDTO> call = restClient.getPeliculasServices().getPelicula(query, RestClient.apiKey, RestClient.language, 1);
+        call.enqueue(new Callback<PeliculaDTO>() {
             @Override
-            public void onResponse(Call<Pelicula> call, Response<Pelicula> response) {
-                Pelicula pelicula = response.body();
-                Glide.with(PeliculaActivity.this).load(RestClient.imageBaseUrl + pelicula.getPoster_path()).into(ivPortadaPleicula);
-                tvTituloPelicula.setText(pelicula.getTitle());
-                tvSipnosisPelicula.setText(pelicula.getOverview());
+            public void onResponse(Call<PeliculaDTO> call, Response<PeliculaDTO> response) {
+                PeliculaDTO peliculaDTO = response.body();
+                Glide.with(PeliculaActivity.this).load(RestClient.imageBaseUrl + peliculaDTO.getPoster_path()).into(ivPortadaPleicula);
+                tvTituloPelicula.setText(peliculaDTO.getTitle());
+                tvSipnosisPelicula.setText(peliculaDTO.getOverview());
             }
 
             @Override
-            public void onFailure(Call<Pelicula> call, Throwable t) {
+            public void onFailure(Call<PeliculaDTO> call, Throwable t) {
 
             }
 
@@ -73,7 +71,7 @@ public class PeliculaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ListaActoresDTO> call, Response<ListaActoresDTO> response) {
                 ListaActoresDTO listaActoresDTO = response.body();
-                final ArrayList<Actor> results = listaActoresDTO.getCast();
+                final ArrayList<ActorDTO> results = listaActoresDTO.getCast();
                 final ActorAdapter actorAdapter = new ActorAdapter(PeliculaActivity.this, results, R.layout.item_actor);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(PeliculaActivity.this, LinearLayoutManager.HORIZONTAL, false);
                 rvActor.setLayoutManager(layoutManager);

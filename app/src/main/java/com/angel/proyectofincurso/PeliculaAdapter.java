@@ -1,9 +1,7 @@
 package com.angel.proyectofincurso;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.angel.proyectofincurso.Data.PeliculaDTO;
 import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
 
@@ -18,13 +17,13 @@ import java.util.ArrayList;
 
 public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.PeliculaViewHolder>{
     Context context;
-    ArrayList<Pelicula> books;
+    ArrayList<PeliculaDTO> books;
     int resource;
 
     private View.OnClickListener clickListener;
     private View.OnLongClickListener longClickListener;
 
-    public PeliculaAdapter(Context context, ArrayList<Pelicula> books, int resource) {
+    public PeliculaAdapter(Context context, ArrayList<PeliculaDTO> books, int resource) {
         this.context = context;
         this.books = books;
         this.resource = resource;
@@ -52,7 +51,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.Pelicu
     @Override
     public void onBindViewHolder(@NonNull PeliculaViewHolder bookViewHolder, int i) {
         //Saco el libro de la lista que está en la posición "i"
-        Pelicula book = books.get(i);
+        PeliculaDTO book = books.get(i);
         //lo uso para rellenar el viewholder
         bookViewHolder.bindBook(book);
 
@@ -71,7 +70,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.Pelicu
     }
 
 
-    public Pelicula getItemFromView(View view) {
+    public PeliculaDTO getItemFromView(View view) {
         PeliculaViewHolder viewHolder = (PeliculaViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
         return books.get(position);
@@ -95,7 +94,7 @@ public class PeliculaAdapter extends RecyclerView.Adapter<PeliculaAdapter.Pelicu
             itemView.setTag(this);
         }
 
-        public void bindBook(Pelicula book) {
+        public void bindBook(PeliculaDTO book) {
             tvNombrePelicula.setText(book.getTitle());
             Glide.with(context).load(RestClient.imageBaseUrl+book.getPoster_path()).into(ivPelicula);
 

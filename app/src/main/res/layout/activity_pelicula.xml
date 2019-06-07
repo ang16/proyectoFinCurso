@@ -65,7 +65,8 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvActor">
+            android:id="@+id/rvActor"
+            android:layout_marginTop="5dp">
 
         </android.support.v7.widget.RecyclerView>
 
@@ -76,7 +77,8 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"

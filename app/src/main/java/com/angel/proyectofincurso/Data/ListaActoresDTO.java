@@ -1,17 +1,15 @@
 package com.angel.proyectofincurso.Data;
 
-import com.angel.proyectofincurso.Actor;
-
 import java.util.ArrayList;
 
 public class ListaActoresDTO {
-    ArrayList<Actor> cast;
+    ArrayList<ActorDTO> cast;
 
-    public ArrayList<Actor> getCast() {
+    public ArrayList<ActorDTO> getCast() {
         return cast;
     }
 
-    public void setCast(ArrayList<Actor> cast) {
+    public void setCast(ArrayList<ActorDTO> cast) {
         this.cast = cast;
     }
 }

@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BuscaPelicula extends AppCompatActivity {
-    ArrayList<Pelicula> peliculas = new ArrayList<>();
+    ArrayList<PeliculaDTO> peliculas = new ArrayList<>();
     SearchView buscador;
     RecyclerView recyclerView;
     RestClient restClient = new RestClient();
@@ -57,7 +57,7 @@ public class BuscaPelicula extends AppCompatActivity {
             @Override
             public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
                 ListaPeliculasDTO listaPeliculasDTO = response.body();
-                final ArrayList<Pelicula> results = listaPeliculasDTO.getResults();
+                final ArrayList<PeliculaDTO> results = listaPeliculasDTO.getResults();
                 final PeliculaAdapter peliculaAdapter = new PeliculaAdapter(BuscaPelicula.this, results, R.layout.item_pelicula);
                 GridLayoutManager layoutManager = new GridLayoutManager(BuscaPelicula.this, 2);
                 recyclerView.setLayoutManager(layoutManager);

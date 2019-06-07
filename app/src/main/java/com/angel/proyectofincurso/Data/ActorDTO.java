@@ -1,6 +1,6 @@
-package com.angel.proyectofincurso;
+package com.angel.proyectofincurso.Data;
 
-public class Actor {
+public class ActorDTO {
     Long cast_id;
     String character;
     String name;

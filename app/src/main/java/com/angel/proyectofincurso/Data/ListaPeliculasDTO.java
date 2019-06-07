@@ -1,17 +1,15 @@
 package com.angel.proyectofincurso.Data;
 
-import com.angel.proyectofincurso.Pelicula;
-
 import java.util.ArrayList;
 
 public class ListaPeliculasDTO {
-    ArrayList<Pelicula> results;
+    ArrayList<PeliculaDTO> results;
 
-    public ArrayList<Pelicula> getResults() {
+    public ArrayList<PeliculaDTO> getResults() {
         return results;
     }
 
-    public void setResults(ArrayList<Pelicula> results) {
+    public void setResults(ArrayList<PeliculaDTO> results) {
         this.results = results;
     }
 }

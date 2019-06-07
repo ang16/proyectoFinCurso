@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.angel.proyectofincurso.Data.ActorDTO;
 import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
 
@@ -16,13 +17,13 @@ import java.util.ArrayList;
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ActorViewHolder> {
     Context context;
-    ArrayList<Actor> books;
+    ArrayList<ActorDTO> books;
     int resource;
 
     private View.OnClickListener clickListener;
     private View.OnLongClickListener longClickListener;
 
-    public ActorAdapter(Context context, ArrayList<Actor> books, int resource) {
+    public ActorAdapter(Context context, ArrayList<ActorDTO> books, int resource) {
         this.context = context;
         this.books = books;
         this.resource = resource;
@@ -50,7 +51,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ActorViewHol
     @Override
     public void onBindViewHolder(@NonNull ActorAdapter.ActorViewHolder bookViewHolder, int i) {
         //Saco el libro de la lista que está en la posición "i"
-        Actor book = books.get(i);
+        ActorDTO book = books.get(i);
         //lo uso para rellenar el viewholder
         bookViewHolder.bindBook(book);
 
@@ -69,7 +70,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ActorViewHol
     }
 
 
-    public Actor getItemFromView(View view) {
+    public ActorDTO getItemFromView(View view) {
         ActorAdapter.ActorViewHolder viewHolder = (ActorAdapter.ActorViewHolder) view.getTag();
         int position = viewHolder.getAdapterPosition();
         return books.get(position);
@@ -95,10 +96,10 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.ActorViewHol
             itemView.setTag(this);
         }
 
-        public void bindBook(Actor book) {
+        public void bindBook(ActorDTO book) {
             tvPersonaje.setText(book.getCharacter());
             tvActor.setText(book.getName());
-            Glide.with(context).load(RestClient.imageBaseUrl + book.profile_path).into(ivActor);
+            Glide.with(context).load(RestClient.imageBaseUrl + book.getProfile_path()).into(ivActor);
 
         }
     }

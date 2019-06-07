@@ -1,7 +1,5 @@
 package com.angel.proyectofincurso.Data;
 
-import com.angel.proyectofincurso.Pelicula;
-
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -15,5 +13,5 @@ public interface PeliculasServices {
     @GET("search/tv")
     Call<ListaPeliculasDTO> getSeries(@Query("api_key") String apiKey,@Query("language") String language,@Query("query") String query, @Query("page") int page);
     @GET("movie/{movie_id}")
-    Call<Pelicula> getPelicula(@Path("movie_id") Long id, @Query("api_key") String apiKey, @Query("language") String language, @Query("page") int page);
+    Call<PeliculaDTO> getPelicula(@Path("movie_id") Long id, @Query("api_key") String apiKey, @Query("language") String language, @Query("page") int page);
 }
