@@ -16,7 +16,7 @@
         android:layout_marginTop="80dp"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        android:id="@+id/textinicio"/>
+        android:id="@+id/textinicio" />
     <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:hint="contraseña"
-        android:id="@+id/edtcontrasena"/>
+        android:id="@+id/edtcontrasena"
+        android:inputType="textPassword"/>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btninicio"
         android:layout_width="match_parent"
