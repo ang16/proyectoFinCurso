@@ -25,14 +25,17 @@ public class RestClient {
     public PeliculasServices getPeliculasServices() {
         return movieServices;
     }
-
     PeliculasServices movieServices;
 
     public ActorService getActorServices() {
         return actorService;
     }
-
     ActorService actorService;
+
+    public DirectorService getDirectorService() {
+        return directorService;
+    }
+    DirectorService directorService;
 
     /**
      * Url base de los servicios de la API
@@ -67,6 +70,7 @@ public class RestClient {
 
         movieServices = restAdapter.create(PeliculasServices.class);
         actorService = restAdapter.create(ActorService.class);
+        directorService = restAdapter.create(DirectorService.class);
 
     }
 
