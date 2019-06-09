@@ -2,15 +2,15 @@ package com.angel.proyectofincurso.Data;
 
 import java.util.ArrayList;
 
-class ListaDirectoresDTO {
+public class ListaDirectoresDTO {
 
-    ArrayList<DirectorDTO> cast;
+    ArrayList<DirectorDTO> crew;
 
-    public ArrayList<DirectorDTO> getCast() {
-        return cast;
+    public ArrayList<DirectorDTO> getCrew() {
+        return crew;
     }
 
-    public void setCast(ArrayList<DirectorDTO> cast) {
-        this.cast = cast;
+    public void setCrew(ArrayList<DirectorDTO> cast) {
+        this.crew = cast;
     }
 }

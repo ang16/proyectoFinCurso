@@ -7,5 +7,5 @@ import retrofit2.http.Query;
 
 public interface DirectorService {
     @GET("movie/{movie_id}/credits")
-    Call<ListaDirectoresDTO> getActores(@Path("movie_id") Long id , @Query("api_key") String apiKey);
+    Call<ListaDirectoresDTO> getDirector(@Path("movie_id") Long id , @Query("api_key") String apiKey);
 }

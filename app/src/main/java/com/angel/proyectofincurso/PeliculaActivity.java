@@ -4,11 +4,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.angel.proyectofincurso.Data.ActorDTO;
+import com.angel.proyectofincurso.Data.DirectorDTO;
 import com.angel.proyectofincurso.Data.ListaActoresDTO;
+import com.angel.proyectofincurso.Data.ListaDirectoresDTO;
 import com.angel.proyectofincurso.Data.PeliculaDTO;
 import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
@@ -25,6 +28,7 @@ public class PeliculaActivity extends AppCompatActivity {
     TextView tvTituloPelicula;
     TextView tvSipnosisPelicula;
     RecyclerView rvActor;
+    RecyclerView rvDirector;
     RestClient restClient = new RestClient();
 
     @Override
@@ -35,10 +39,12 @@ public class PeliculaActivity extends AppCompatActivity {
         tvTituloPelicula = findViewById(R.id.tvTituloPelicula);
         tvSipnosisPelicula = findViewById(R.id.tvSipnosisPelicula);
         rvActor = findViewById(R.id.rvActor);
+        rvDirector = findViewById(R.id.rvDirector);
 
         Bundle bundle = getIntent().getExtras();
         buscaPeliculas(Long.parseLong(bundle.get("id").toString()));
         buscaActores(Long.parseLong(bundle.get("id").toString()));
+        buscaDirector(Long.parseLong(bundle.get("id").toString()));
 
 
     }
@@ -83,6 +89,35 @@ public class PeliculaActivity extends AppCompatActivity {
 
             }
 
+        });
+    }
+
+    public void buscaDirector(Long query) {
+
+        Call<ListaDirectoresDTO> call = restClient.getDirectorService().getDirector(query,RestClient.apiKey);
+        call.enqueue(new Callback<ListaDirectoresDTO>() {
+
+            @Override
+            public void onResponse(Call<ListaDirectoresDTO> call, Response<ListaDirectoresDTO> response) {
+                ListaDirectoresDTO listaDirectorDTO = response.body();
+                final ArrayList<DirectorDTO> results = listaDirectorDTO.getCrew();
+                final ArrayList<DirectorDTO> results2= new ArrayList<>();
+                for (DirectorDTO directorDTO:results){
+                    if (directorDTO.getJob().equals("Director")){
+                        results2.add(directorDTO);
+
+                    }
+                }
+                final DirectorAdapter directorAdapter = new DirectorAdapter(PeliculaActivity.this, results2, R.layout.item_director);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(PeliculaActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                rvDirector.setLayoutManager(layoutManager);
+                rvDirector.setAdapter(directorAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<ListaDirectoresDTO> call, Throwable t) {
+
+            }
         });
     }
 }

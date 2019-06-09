@@ -86,10 +86,12 @@
             android:paddingBottom="10dip"
             />
 
-        <android.support.v7.widget.AppCompatTextView
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvDirectorPelicula"
-            android:layout_marginLeft="8dp"/>
+            android:id="@+id/rvDirector"
+            android:layout_marginTop="5dp">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 </ScrollView>
