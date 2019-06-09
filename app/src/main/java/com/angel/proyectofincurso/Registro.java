@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -37,6 +39,7 @@ public class Registro extends AppCompatActivity {
     ImageView ivAvatar;
     String imagepath;
     Button btninicioregistro;
+    FirebaseAuth aut;
 
     @Override
 
@@ -52,6 +55,30 @@ public class Registro extends AppCompatActivity {
         btnseleccionimagen = findViewById(R.id.btnseleccionimagen);
         ivAvatar = findViewById(R.id.ivAvatar);
         btninicioregistro = findViewById(R.id.btninicioregistro);
+        aut= FirebaseAuth.getInstance();
+
+        if (aut.getCurrentUser() != null ) {
+            if (aut.getCurrentUser().isEmailVerified()){
+                finish();
+                startActivity(new Intent(getApplicationContext(), BuscaPelicula.class));
+            }else {
+                btninicioregistro.setText("Enviar correo de verificación");
+                Toast.makeText(getApplicationContext(), "Verifica tu correo", Toast.LENGTH_SHORT).show();
+                btninicioregistro.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        aut.getInstance().getCurrentUser().sendEmailVerification();
+                        btninicioregistro.setText("Registrar");
+                        btninicioregistro.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                insertaUsuario(usuario,email,contrasena,contrasena2,imagepath);
+                            }
+                        });
+
+                    }
+                });
+            }
+
+        }
 
         btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
             @Override

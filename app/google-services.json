@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "985369039200",
+    "firebase_url": "https://infopelis-d850e.firebaseio.com",
+    "project_id": "infopelis-d850e",
+    "storage_bucket": "infopelis-d850e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985369039200:android:f60f933c640c540f",
+        "android_client_info": {
+          "package_name": "com.angel.infopelis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985369039200-k2ufa9p2llj48p4ufacqjei13jqmul47.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq6t_k9bksKYO50mMzRhlxcfwJGxrBukw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985369039200-k2ufa9p2llj48p4ufacqjei13jqmul47.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
