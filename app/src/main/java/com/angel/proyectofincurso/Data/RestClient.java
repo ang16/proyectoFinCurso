@@ -37,6 +37,11 @@ public class RestClient {
     }
     DirectorService directorService;
 
+    public TrailerService getTrailerService() {
+        return trailerService;
+    }
+    TrailerService trailerService;
+
     /**
      * Url base de los servicios de la API
      */
@@ -71,6 +76,7 @@ public class RestClient {
         movieServices = restAdapter.create(PeliculasServices.class);
         actorService = restAdapter.create(ActorService.class);
         directorService = restAdapter.create(DirectorService.class);
+        trailerService = restAdapter.create(TrailerService.class);
 
     }
 
