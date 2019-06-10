@@ -1,9 +1,13 @@
 package com.angel.proyectofincurso;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import com.angel.proyectofincurso.Data.ListaDirectoresDTO;
 import com.angel.proyectofincurso.Data.PeliculaDTO;
 import com.angel.proyectofincurso.Data.RestClient;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -119,6 +124,29 @@ public class PeliculaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_logout, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.itLogout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent= new Intent(PeliculaActivity.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 
