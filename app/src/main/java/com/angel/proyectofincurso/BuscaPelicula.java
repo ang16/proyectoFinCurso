@@ -25,7 +25,7 @@ public class BuscaPelicula extends AppCompatActivity {
     ArrayList<PeliculaDTO> peliculas = new ArrayList<>();
     SearchView buscador;
     RecyclerView recyclerView;
-    RestClient restClient = new RestClient();
+    RestClient restClient;
 
 
     @Override
@@ -35,6 +35,7 @@ public class BuscaPelicula extends AppCompatActivity {
         buscador = findViewById(R.id.buscador);
         buscador.onActionViewExpanded();
         recyclerView = findViewById(R.id.listaPeliculas);
+        restClient = new RestClient();
 
         buscador.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 

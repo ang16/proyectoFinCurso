@@ -41,7 +41,7 @@ public class PeliculaActivity extends YouTubeBaseActivity {
     TextView tvSipnosisPelicula;
     RecyclerView rvActor;
     RecyclerView rvDirector;
-    RestClient restClient = new RestClient();
+    RestClient restClient;
     YouTubePlayerView youtubePlayerView;
 
     @Override
@@ -54,6 +54,7 @@ public class PeliculaActivity extends YouTubeBaseActivity {
         rvActor = findViewById(R.id.rvActor);
         rvDirector = findViewById(R.id.rvDirector);
         youtubePlayerView = findViewById(R.id.youtubePlayerView);
+        restClient = new RestClient();
 
         Bundle bundle = getIntent().getExtras();
         buscaPeliculas(Long.parseLong(bundle.get("id").toString()));
@@ -97,6 +98,15 @@ public class PeliculaActivity extends YouTubeBaseActivity {
                 LinearLayoutManager layoutManager = new LinearLayoutManager(PeliculaActivity.this, LinearLayoutManager.HORIZONTAL, false);
                 rvActor.setLayoutManager(layoutManager);
                 rvActor.setAdapter(actorAdapter);
+
+                actorAdapter.setClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent= new Intent(PeliculaActivity.this,InformacionActorActivity.class);
+                        intent.putExtra("id",actorAdapter.getItemFromView(v).getId());
+                        startActivity(intent);
+                    }
+                });
             }
 
             @Override

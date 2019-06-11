@@ -15,7 +15,7 @@ public class RestClient {
     public static final int NOT_ACEPTED = 406;
 
 
-    public static final String apiKey = "2cb88f6bdd09877db8127bcd6208914a";
+    public static final String apiKey = "8f847a20f7ba54c2e83210279a8c16e8";
     public static final String language = "es-ES";
 
     //    https://image.tmdb.org/t/p/w500/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg
@@ -41,6 +41,9 @@ public class RestClient {
         return trailerService;
     }
     TrailerService trailerService;
+
+    public InformacionActorService getInformacionActorService(){return informacionActorService;}
+    InformacionActorService informacionActorService;
 
     /**
      * Url base de los servicios de la API
@@ -77,6 +80,7 @@ public class RestClient {
         actorService = restAdapter.create(ActorService.class);
         directorService = restAdapter.create(DirectorService.class);
         trailerService = restAdapter.create(TrailerService.class);
+        informacionActorService = restAdapter.create(InformacionActorService.class);
 
     }
 

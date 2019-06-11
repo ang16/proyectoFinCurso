@@ -1,17 +1,17 @@
 package com.angel.proyectofincurso.Data;
 
 public class ActorDTO {
-    Long cast_id;
+    Long id;
     String character;
     String name;
     String profile_path;
 
-    public Long getCast_id() {
-        return cast_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setCast_id(Long cast_id) {
-        this.cast_id = cast_id;
+    public void setId(Long cast_id) {
+        this.id = cast_id;
     }
 
     public String getCharacter() {

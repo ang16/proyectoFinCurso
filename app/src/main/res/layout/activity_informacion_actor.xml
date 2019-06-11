@@ -23,53 +23,55 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNombreActor"
         android:layout_toRightOf="@+id/ivInformacionActor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivInformacionActor"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:text="Información personal"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#ffffff"
+            android:paddingBottom="10dip" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ivInformacionActor"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
             <android.support.v7.widget.AppCompatTextView
-                android:layout_width="match_parent"
+                android:id="@+id/tvFechaNacimiento"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="10dp"
-                android:text="Información personal"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                />
+                android:layout_weight="1" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dip"
-                android:background="#ffffff"
-                android:paddingBottom="10dip" />
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvLugarNacimiento"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvFechaNacimiento"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"/>
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvLugarNacimiento"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1" />
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvPeliculasActor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
