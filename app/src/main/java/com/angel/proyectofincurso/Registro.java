@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -20,13 +21,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -45,6 +58,7 @@ public class Registro extends AppCompatActivity {
     Button btninicioregistro;
     FirebaseAuth aut;
     ProgressDialog progressDialog;
+    FirebaseStorage storage;
 
     @Override
 
@@ -62,6 +76,7 @@ public class Registro extends AppCompatActivity {
         btninicioregistro = findViewById(R.id.btninicioregistro);
         aut= FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+        storage = FirebaseStorage.getInstance();
 
 
 
@@ -174,9 +189,91 @@ public class Registro extends AppCompatActivity {
         if (requestCode == SELECT_IMAGE) {
             if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
+                    StorageReference storageRef = storage.getReference();
                     Uri selectedImage = data.getData();
-                    imagepath = selectedImage.toString();
-                    ivAvatar.setImageURI(selectedImage);
+
+                    Uri file =selectedImage;
+                    StorageReference riversRef = storageRef.child("images/"+file.getLastPathSegment());
+                    UploadTask uploadTask = riversRef.putFile(file);
+
+// Register observers to listen for when the download is done or if it fails
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            // ...
+                        }
+                    });
+
+
+
+                    /*InputStream stream = null;
+                    try {
+                        stream = new FileInputStream(new File(selectedImage.toString()));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    ImageView imageView = new ImageView(Registro.this);
+                    imageView.setImageURI(selectedImage);
+                    imageView.setDrawingCacheEnabled(true);
+                    imageView.buildDrawingCache();
+                    File file = new File(selectedImage.toString());
+                    String imageName = file.getName();
+                    StorageReference mountainsRef = storageRef.child(imageName);
+                    StorageReference mountainImagesRef = storageRef.child("images/"+imageName);
+
+                    UploadTask uploadTask = mountainsRef.putStream(stream);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            // ...
+                        }
+                    });*/
+
+                    /*ImageView imageView = new ImageView(Registro.this);
+                    imageView.setImageURI(selectedImage);
+                    imageView.setDrawingCacheEnabled(true);
+                    imageView.buildDrawingCache();
+                    File file = new File(selectedImage.toString());
+                    String imageName = file.getName();
+                    StorageReference mountainsRef = storageRef.child(imageName);
+                    StorageReference mountainImagesRef = storageRef.child("images/"+imageName);
+
+                    imageView.setDrawingCacheEnabled(true);
+                    imageView.buildDrawingCache();
+                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                    byte[] data2 = baos.toByteArray();
+
+                    UploadTask uploadTask = mountainImagesRef.putBytes(data2);
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            // Handle unsuccessful uploads
+                            Toast.makeText(Registro.this, "", Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            // ...
+                            Toast.makeText(Registro.this, "", Toast.LENGTH_LONG).show();
+                        }
+                    });*/
+                    /*imagepath = selectedImage.toString();
+                    ivAvatar.setImageURI(selectedImage);*/
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_SHORT).show();
