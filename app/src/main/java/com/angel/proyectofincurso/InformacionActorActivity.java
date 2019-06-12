@@ -129,9 +129,9 @@ public class InformacionActorActivity extends AppCompatActivity {
                     public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
                         ListaPeliculasDTO listaPeliculasDTO = response.body();
                         System.out.println("Hola");
-                        final ArrayList<PeliculaDTO> results = listaPeliculasDTO.getResults();
+                        final ArrayList<PeliculaDTO> cast = listaPeliculasDTO.getCast();
                         System.out.println("Hola2");
-                        final PeliculaActorAdapter peliculaActorAdapter = new PeliculaActorAdapter(InformacionActorActivity.this, results, R.layout.item_pelicula);
+                        final PeliculaActorAdapter peliculaActorAdapter = new PeliculaActorAdapter(InformacionActorActivity.this, cast, R.layout.item_pelicula);
                         System.out.println("Hola3");
                         LinearLayoutManager layoutManager = new LinearLayoutManager(InformacionActorActivity.this, LinearLayoutManager.HORIZONTAL, false);
                         System.out.println(listaPeliculasDTO.getCast().get(0).getTitle());
