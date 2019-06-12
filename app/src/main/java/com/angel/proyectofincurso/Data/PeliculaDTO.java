@@ -5,6 +5,15 @@ public class PeliculaDTO {
     String title;
     String poster_path;
     String overview;
+    String character;
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
 
     public Long getId() {
         return id;

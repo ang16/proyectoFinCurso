@@ -123,22 +123,26 @@ public class InformacionActorActivity extends AppCompatActivity {
                     genero="Masculino";
                 }
                 tvGenero.setText("Gnero: "+genero);
-                /*Call<ListaPeliculasDTO> call = restClient.getPeliculasServices().getPeliculas(RestClient.apiKey, RestClient.language, query, 1);
-                call.enqueue(new Callback<ListaPeliculasDTO>() {
+                Call<ListaPeliculasDTO> call3 = restClient.getPeliculasServices().getPeliculasActor(query,RestClient.apiKey, RestClient.language);
+                call3.enqueue(new Callback<ListaPeliculasDTO>() {
                     @Override
                     public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
                         ListaPeliculasDTO listaPeliculasDTO = response.body();
+                        System.out.println("Hola");
                         final ArrayList<PeliculaDTO> results = listaPeliculasDTO.getResults();
-                        final PeliculaAdapter peliculaAdapter = new PeliculaAdapter(InformacionActorActivity.this, results, R.layout.item_pelicula);
-                        GridLayoutManager layoutManager = new GridLayoutManager(InformacionActorActivity.this, 2);
+                        System.out.println("Hola2");
+                        final PeliculaActorAdapter peliculaActorAdapter = new PeliculaActorAdapter(InformacionActorActivity.this, results, R.layout.item_pelicula);
+                        System.out.println("Hola3");
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(InformacionActorActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                        System.out.println(listaPeliculasDTO.getCast().get(0).getTitle());
                         rvPeliculasActor.setLayoutManager(layoutManager);
-                        rvPeliculasActor.setAdapter(peliculaAdapter);
+                        rvPeliculasActor.setAdapter(peliculaActorAdapter);
 
-                        peliculaAdapter.setClickListener(new View.OnClickListener() {
+                        peliculaActorAdapter.setClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent= new Intent(InformacionActorActivity.this, PeliculaActivity.class);
-                                intent.putExtra("id",peliculaAdapter.getItemFromView(view).getId());
+                                intent.putExtra("id",peliculaActorAdapter.getItemFromView(view).getId());
                                 startActivity(intent);
                             }
                         });
@@ -148,7 +152,7 @@ public class InformacionActorActivity extends AppCompatActivity {
                     public void onFailure(Call<ListaPeliculasDTO> call, Throwable t) {
 
                     }
-                });*/
+                });
 
 
                 if (tvBiografiaActor.getLineCount()>10) {
