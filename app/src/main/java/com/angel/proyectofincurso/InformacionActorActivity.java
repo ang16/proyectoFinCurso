@@ -123,7 +123,7 @@ public class InformacionActorActivity extends AppCompatActivity {
                     genero="Masculino";
                 }
                 tvGenero.setText("Gnero: "+genero);
-                Call<ListaPeliculasDTO> call = restClient.getPeliculasServices().getPeliculas(RestClient.apiKey, RestClient.language, query, 1);
+                /*Call<ListaPeliculasDTO> call = restClient.getPeliculasServices().getPeliculas(RestClient.apiKey, RestClient.language, query, 1);
                 call.enqueue(new Callback<ListaPeliculasDTO>() {
                     @Override
                     public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
@@ -148,7 +148,7 @@ public class InformacionActorActivity extends AppCompatActivity {
                     public void onFailure(Call<ListaPeliculasDTO> call, Throwable t) {
 
                     }
-                });
+                });*/
 
 
                 if (tvBiografiaActor.getLineCount()>10) {
