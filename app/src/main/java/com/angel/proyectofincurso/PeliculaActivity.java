@@ -162,7 +162,12 @@ public class PeliculaActivity extends YouTubeBaseActivity {
                     }
                 }
                 if(!video){
-                    playVideo(results.get(0).getKey(),youtubePlayerView);
+                    try {
+                        playVideo(results.get(0).getKey(),youtubePlayerView);
+                    }catch (Exception e){
+
+                    }
+
                 }
 
 

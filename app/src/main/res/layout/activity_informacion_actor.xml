@@ -42,10 +42,12 @@
                 android:gravity="fill_horizontal" />
 
             <Button
+                android:layout_marginTop="-20dp"
                 android:id="@+id/btnVerMas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBiografiaActor"
+                android:layout_alignParentRight="true"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
@@ -72,25 +74,25 @@
                 android:background="#ffffff"
                 android:paddingBottom="10dip" />
 
-            <LinearLayout
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvFechaNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="8dp" />
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvFechaNacimiento"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1" />
+            <android.support.v7.widget.AppCompatTextView
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/tvLugarNacimiento"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_weight="1" />
-            </LinearLayout>
+                android:id="@+id/tvLugarNacimiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvPeliculasActor"
