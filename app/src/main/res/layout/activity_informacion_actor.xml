@@ -42,12 +42,12 @@
                 android:gravity="fill_horizontal" />
 
             <Button
-                android:layout_marginTop="-20dp"
                 android:id="@+id/btnVerMas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvBiografiaActor"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="-20dp"
                 android:background="@android:color/transparent"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dip"
                 android:background="#ffffff"
-                android:paddingBottom="10dip" />
+                android:paddingBottom="10dp" />
 
 
             <android.support.v7.widget.AppCompatTextView
@@ -94,10 +94,26 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp" />
 
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:text="Peliculas en las que aparece"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#ffffff"
+                android:paddingBottom="10dp" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvPeliculasActor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
 
 
         </LinearLayout>

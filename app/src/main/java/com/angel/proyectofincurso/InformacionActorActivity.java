@@ -128,16 +128,30 @@ public class InformacionActorActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ListaPeliculasDTO> call, Response<ListaPeliculasDTO> response) {
                         ListaPeliculasDTO listaPeliculasDTO = response.body();
-                        System.out.println("Hola");
                         final ArrayList<PeliculaDTO> cast = listaPeliculasDTO.getCast();
-                        System.out.println("Hola2");
-                        final PeliculaActorAdapter peliculaActorAdapter = new PeliculaActorAdapter(InformacionActorActivity.this, cast, R.layout.item_pelicula);
-                        System.out.println("Hola3");
+                        final PeliculaActorAdapter peliculaActorAdapter = new PeliculaActorAdapter(InformacionActorActivity.this, cast, R.layout.item_pelicula_actor);
                         LinearLayoutManager layoutManager = new LinearLayoutManager(InformacionActorActivity.this, LinearLayoutManager.HORIZONTAL, false);
-                        System.out.println(listaPeliculasDTO.getCast().get(0).getTitle());
                         rvPeliculasActor.setLayoutManager(layoutManager);
                         rvPeliculasActor.setAdapter(peliculaActorAdapter);
 
+                        if (tvBiografiaActor.getLineCount()>10) {
+                            tvBiografiaActor.setMaxLines(10);//your TextView
+                            btnVerMas.setText("Ver más");
+                        }
+
+                        btnVerMas.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                if (tvBiografiaActor.getMaxLines()>10) {
+                                    tvBiografiaActor.setMaxLines(10);//your TextView
+                                    btnVerMas.setText("Ver más");
+                                } else {
+                                    tvBiografiaActor.setMaxLines(Integer.MAX_VALUE);//your TextView
+                                    btnVerMas.setText("Ver menos");
+                                }
+                            }
+                        });
                         peliculaActorAdapter.setClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -145,13 +159,17 @@ public class InformacionActorActivity extends AppCompatActivity {
                                 intent.putExtra("id",peliculaActorAdapter.getItemFromView(view).getId());
                                 startActivity(intent);
                             }
+
+
                         });
+
                     }
 
                     @Override
                     public void onFailure(Call<ListaPeliculasDTO> call, Throwable t) {
 
                     }
+
                 });
 
 

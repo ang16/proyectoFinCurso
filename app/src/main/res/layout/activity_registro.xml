@@ -23,7 +23,7 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -40,7 +40,7 @@
             android:id="@+id/btnseleccionimagen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Selecionar imagen de perfil" />
+            android:text="Selecionar imagen de perfil" />-->
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/edtusuarioregistro"
@@ -63,12 +63,12 @@
             android:layout_marginTop="50dp"
             android:hint="contraseña" />
 
-        <android.support.v7.widget.AppCompatEditText
+        <!--<android.support.v7.widget.AppCompatEditText
             android:id="@+id/edtcontrasenaregistro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:hint="Verifica tu contraseña" />
+            android:hint="Verifica tu contraseña" />-->
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btninicioregistro"

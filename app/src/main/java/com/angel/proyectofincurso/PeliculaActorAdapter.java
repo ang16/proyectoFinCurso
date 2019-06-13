@@ -83,21 +83,22 @@ public class PeliculaActorAdapter extends RecyclerView.Adapter<PeliculaActorAdap
 
 
     class PeliculaActorViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPeliculaActoNombrer;
+        TextView tvPeliculaActoNombre;
         TextView PeliculaActorNombrePersonaje;
         ImageView ivPeliculaActor;
 
         public PeliculaActorViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            tvPeliculaActoNombrer = itemView.findViewById(R.id.tvPeliculaActoNombrer);
+            tvPeliculaActoNombre = itemView.findViewById(R.id.tvPeliculaActoNombre);
             ivPeliculaActor = itemView.findViewById(R.id.ivPeliculaActor);
             PeliculaActorNombrePersonaje = itemView.findViewById(R.id.PeliculaActorNombrePersonaje);
             itemView.setTag(this);
         }
 
         public void bindBook(PeliculaDTO book) {
-            tvPeliculaActoNombrer.setText(book.getTitle());
+            System.out.println("El nombre de la pelicula es "+ book.getTitle());
+            tvPeliculaActoNombre.setText(book.getTitle());
             PeliculaActorNombrePersonaje.setText(book.getCharacter());
             Glide.with(context).load(RestClient.imageBaseUrl+book.getPoster_path()).into(ivPeliculaActor);
 
