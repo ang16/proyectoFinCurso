@@ -70,9 +70,6 @@ public class Registro extends AppCompatActivity {
         usuario = findViewById(R.id.edtcontrasenaregistro);
         email = findViewById(R.id.edtemailregistro);
         contrasena = findViewById(R.id.edtcontrasenaregistro);
-        contrasena2 = findViewById(R.id.edtcontrasenaregistro2);
-        btnseleccionimagen = findViewById(R.id.btnseleccionimagen);
-        ivAvatar = findViewById(R.id.ivAvatar);
         btninicioregistro = findViewById(R.id.btninicioregistro);
         aut= FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -80,7 +77,7 @@ public class Registro extends AppCompatActivity {
 
 
 
-        btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
+        /*btnseleccionimagen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -90,7 +87,7 @@ public class Registro extends AppCompatActivity {
 
                 startActivityForResult(Intent.createChooser(intent, "Selecciona una imagen"), SELECT_IMAGE);
             }
-        });
+        });*/
 
         btninicioregistro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,33 +117,34 @@ public class Registro extends AppCompatActivity {
         if (TextUtils.isEmpty(emailr)) {
             Toast.makeText(this, "Escriba el email", Toast.LENGTH_SHORT).show();
             return;
-        }else if(emailr.length()<6){
+        }else if(contrasenar.length()<6){
             Toast.makeText(this, "La contraseña debe tener 6 caracteres como mínimo", Toast.LENGTH_SHORT).show();
 
-        }
-        if (TextUtils.isEmpty(contrasenar)) {
+        }else if (TextUtils.isEmpty(contrasenar)) {
             Toast.makeText(this, "Escriba la contraseña", Toast.LENGTH_SHORT).show();
             return;
-        }
-        progressDialog.setMessage("Registrando usuario...");
-        progressDialog.show();
-        aut.createUserWithEmailAndPassword(emailr,contrasenar).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
-                    progressDialog.dismiss();
-                    finish();
-                    startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                    Toast.makeText(getApplicationContext(), "Verifica tu correo", Toast.LENGTH_SHORT).show();
+        }else {
+            progressDialog.setMessage("Registrando usuario...");
+            progressDialog.show();
+            aut.createUserWithEmailAndPassword(emailr, contrasenar).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                        progressDialog.dismiss();
+                        finish();
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        Toast.makeText(getApplicationContext(), "Verifica tu correo", Toast.LENGTH_SHORT).show();
 
 
-                }else{
-                    progressDialog.dismiss();
-                    Toast.makeText(getApplicationContext(),"Fallo en el registro,vuelva a intentarlo",Toast.LENGTH_SHORT).show();
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Fallo en el registro,vuelva a intentarlo", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
 
         /*Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
