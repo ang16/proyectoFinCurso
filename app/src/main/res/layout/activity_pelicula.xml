@@ -62,7 +62,8 @@
             android:paddingBottom="10dip"
             />
 
-        <com.google.android.youtube.player.YouTubePlayerView
+        <fragment
+            android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
             android:id="@+id/youtubePlayerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

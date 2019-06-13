@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,15 +35,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PeliculaActivity extends YouTubeBaseActivity {
-
+public class PeliculaActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
     ImageView ivPortadaPleicula;
     TextView tvTituloPelicula;
     TextView tvSipnosisPelicula;
     RecyclerView rvActor;
     RecyclerView rvDirector;
     RestClient restClient;
-    YouTubePlayerView youtubePlayerView;
+    YouTubePlayerSupportFragment youtubePlayerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class PeliculaActivity extends YouTubeBaseActivity {
         tvSipnosisPelicula = findViewById(R.id.tvSipnosisPelicula);
         rvActor = findViewById(R.id.rvActor);
         rvDirector = findViewById(R.id.rvDirector);
-        youtubePlayerView = findViewById(R.id.youtubePlayerView);
+        youtubePlayerView = (YouTubePlayerSupportFragment) getSupportFragmentManager().findFragmentById(R.id.youtubePlayerView);
         restClient = new RestClient();
 
         Bundle bundle = getIntent().getExtras();
@@ -180,13 +180,14 @@ public class PeliculaActivity extends YouTubeBaseActivity {
 
         });
     }
-    public void playVideo(final String videoId, YouTubePlayerView youTubePlayerView) {
+    public void playVideo(final String videoId, YouTubePlayerSupportFragment youTubePlayerView) {
         //initialize youtube player view
         youTubePlayerView.initialize("AIzaSyDv5sON5QSkHILRLww5SYS6Tbi2BilR7gA",
                 new YouTubePlayer.OnInitializedListener() {
                     @Override
                     public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                         YouTubePlayer youTubePlayer, boolean b) {
+                        //onInitializationSuccess(provider, youTubePlayer, b);
                         youTubePlayer.cueVideo(videoId);
                     }
 
@@ -219,6 +220,16 @@ public class PeliculaActivity extends YouTubeBaseActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+
     }
 }
 
