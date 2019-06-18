@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="¿No está registrado?, pulse aquí para registrarse" />
+            android:text="¿Está registrado?, pulse aquí para logearse" />
 
 
     </LinearLayout>
